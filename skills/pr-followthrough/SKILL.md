@@ -69,7 +69,7 @@ After the push, so replies can cite the commit SHA:
 
 ## 6. Independent review loop
 
-Skip this step if an independent review already passed on the current head (jira-to-pr runs one before handing over).
+Skip this step only if an independent review found nothing new on the current head, with no commits pushed since.
 
 Each round:
 
