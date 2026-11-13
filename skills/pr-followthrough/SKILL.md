@@ -80,7 +80,7 @@ Each round:
 3. When both are in, run steps 3 to 5 on their findings.
 4. Re-dispatch the reviewer after the push. Do not ask first.
 
-Done when a pass reports no new blockers or should-fixes. There is no pass cap. Measure where findings land: findings in the previous round's fixes mean the loop is converging.
+Done when a pass reports no new blockers or should-fixes. There is no pass cap. Measure where findings land: findings in the previous round's fixes mean the loop is converging. If two rounds in a row raise blockers in code no earlier round touched, the loop is not converging: stop and report those findings for me to decide.
 
 ## 7. Finish
 
