@@ -85,7 +85,13 @@ Done when every finding that is not a nit is fixed or disproved, and the checks 
 1. Push the fixes.
 2. Mark the PR ready with `gh pr ready`.
 3. Move the card to the review status, found by name (Review, In Review or Code Review).
-4. Run the `pr-followthrough` skill on the PR. Its report folds into the one below.
+4. Follow the PR through to green. If the `pr-followthrough` skill is installed, run it on the PR and fold its report into the one below. Otherwise, do a short follow-through yourself:
+   - wait for the checks with `gh pr checks <n> --watch`
+   - when a check fails because of this PR, fix it, run the checks again, push, and wait again
+   - when a check also fails on the base branch, report it and leave the fix out of this PR
+   - list each review comment in the report, and post no replies
+
+Done when the checks are green, or every failing check is one the base branch also fails.
 
 ## Report
 
