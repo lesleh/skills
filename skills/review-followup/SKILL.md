@@ -48,12 +48,15 @@ Portable: runs as whoever invokes it, against whatever repo `gh` points at. Read
 
 ### 1. Resolve identity, repo, PR, head
 
+The PR to check is `$ARGUMENTS`. A URL (`https://github.com/<owner>/<name>/pull/<n>`) gives
+the repo and the number. A bare number is a PR in the current repo. If it is empty, use the
+current branch's PR (`gh pr view --json number -q .number`).
+
 ```bash
 ME=$(gh api user -q .login)
-REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner)   # owner/name
+REPO=<owner/name>   # from the URL, else: gh repo view --json nameWithOwner -q .nameWithOwner
 OWNER=${REPO%/*}; NAME=${REPO#*/}
-# PR: use $ARGUMENTS if it's a number/URL; else auto-detect the branch's PR
-PR=${ARGUMENTS:-$(gh pr view --json number -q .number)}
+PR=<number>
 HEAD=$(gh api repos/$REPO/pulls/$PR --jq .head.sha)
 BASE=$(gh api repos/$REPO/pulls/$PR --jq .base.sha)
 ```
@@ -140,7 +143,7 @@ For each comment:
 2. **Original code** — the code as it was when I commented:
 
    ```bash
-   gh api "repos/$REPO/contents/$PATH?ref=$ANCHOR" --jq '.content' | base64 -d   # read around original_line
+   gh api "repos/$REPO/contents/$FILE?ref=$ANCHOR" --jq '.content' | base64 -d   # read around original_line
    ```
 
    Works even on a force-pushed-away commit. If it 404s, fall back to the comment's
