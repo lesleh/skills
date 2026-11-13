@@ -100,4 +100,5 @@ End with:
 - the PR URL, and the card key with its new status
 - review findings fixed, findings disproved with their evidence, and the number of nits skipped
 - follow-ups found outside the card's scope
+- when step 7 ran its short follow-through: each review comment, and each check that also fails on the base branch
 - any step skipped, and why
