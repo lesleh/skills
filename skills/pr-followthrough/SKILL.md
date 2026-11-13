@@ -1,10 +1,10 @@
 ---
 name: pr-followthrough
-description: Take an open PR of mine to green - wait for CI and review bots, fix what they raise, reply to every comment, loop an independent review until clean. Use right after opening a PR, when review feedback lands (Copilot, Codacy, a human), or when CI fails on a PR.
+description: Take an open PR of mine to green, with every comment answered. Use right after opening a PR, when review feedback arrives, or when CI fails on a PR.
 argument-hint: "[PR number or URL]"
 ---
 
-Follow through on PR `$ARGUMENTS` (or the current branch's PR) until it is green, every comment has a reply, and an independent review finds nothing new. This skill sets the order. The repo's `AGENTS.md` / `CLAUDE.md` set the check commands, and my own rules set commit messages and replies. Running it is my permission to push to this PR without asking each time. Replies are different: I read every one before it posts.
+Follow through on PR `$ARGUMENTS` (or the current branch's PR) until it is green, every comment has a reply, and an independent review finds nothing new. This skill sets the order. The repo's `AGENTS.md` / `CLAUDE.md` set the check commands, and my own rules set commit messages and replies. Running it is my permission to push to this PR without asking each time.
 
 The loop has **rounds**. A round collects every piece of feedback, fixes it all, pushes once, and replies. One push per round, because each push restarts CI and stales any review evidence.
 
@@ -57,7 +57,7 @@ Done when every item has one of the four.
 3. Before pushing, two guards. Either one failing means stop and report, no push:
    - **Approvals.** `gh api repos/{owner}/{repo}/pulls/<n>/reviews --jq '.[] | select(.state == "APPROVED") | .user.login'`. Any push dismisses an approval, so an approved PR is frozen. Queue the change for a follow-up PR.
    - **Lease.** `git ls-remote origin <branch>` must match the SHA I last pushed. Worktrees share tracking refs, so `--force-with-lease` alone does not protect this. If they differ, `git range-diff` what would be replaced.
-4. `git push --force-with-lease`. Never push while a review run is in flight.
+4. Wait for any review run in flight to finish, then `git push --force-with-lease`.
 
 ## 5. Reply
 
