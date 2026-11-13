@@ -38,6 +38,8 @@ If any item fails, stop. Ask numbered questions, one per failure, each with what
 
 If no transition reaches an in-progress status, or the transition needs fields you cannot fill, stop and ask.
 
+Done when the card is assigned to the user and its status is in progress.
+
 ## 4. Do the work
 
 - Put the card key in the branch name so Jira links the branch and PR. In a worktree with a generated name such as `claude/...`, rename the branch with `git branch -m`.
