@@ -4,16 +4,16 @@ Agent skills in the layout the [skills CLI](https://github.com/vercel-labs/skill
 
 ## Install
 
-Install every skill:
+Install every skill for your user, rather than only the current project:
 
 ```sh
-npx skills add lesleh/skills
+npx skills add lesleh/skills -g
 ```
 
 Install one skill:
 
 ```sh
-npx skills add lesleh/skills --skill robot-wars
+npx skills add lesleh/skills -g --skill robot-wars
 ```
 
 ## Skills
