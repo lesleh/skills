@@ -1,10 +1,10 @@
 ---
 name: pr-followthrough
-description: Take an open PR of mine to green - wait for CI and review bots, fix what they raise, reply to every comment, loop an independent review until clean. Use right after opening a PR, when review feedback lands (Copilot, Codacy, a human), or when CI fails on a PR.
+description: Take an open PR of mine to green, with every comment answered. Use right after opening a PR, when review feedback arrives, or when CI fails on a PR.
 argument-hint: "[PR number or URL]"
 ---
 
-Follow through on PR `$ARGUMENTS` (or the current branch's PR) until it is green, every comment has a reply, and an independent review finds nothing new. This skill sets the order. The repo's `AGENTS.md` / `CLAUDE.md` set the check commands, and my own rules set commit messages and replies. Running it is my permission to push to this PR without asking each time. Replies are different: I read every one before it posts.
+Follow through on PR `$ARGUMENTS` (or the current branch's PR) until it is green, every comment has a reply, and an independent review finds nothing new. This skill sets the order. The repo's `AGENTS.md` / `CLAUDE.md` set the check commands, and my own rules set commit messages and replies. Running it is my permission to push to this PR without asking each time.
 
 The loop has **rounds**. A round collects every piece of feedback, fixes it all, pushes once, and replies. One push per round, because each push restarts CI and stales any review evidence.
 
@@ -57,7 +57,7 @@ Done when every item has one of the four.
 3. Before pushing, two guards. Either one failing means stop and report, no push:
    - **Approvals.** `gh api repos/{owner}/{repo}/pulls/<n>/reviews --jq '.[] | select(.state == "APPROVED") | .user.login'`. Any push dismisses an approval, so an approved PR is frozen. Queue the change for a follow-up PR.
    - **Lease.** `git ls-remote origin <branch>` must match the SHA I last pushed. Worktrees share tracking refs, so `--force-with-lease` alone does not protect this. If they differ, `git range-diff` what would be replaced.
-4. `git push --force-with-lease`. Never push while a review run is in flight.
+4. Wait for any review run in flight to finish, then `git push --force-with-lease`.
 
 ## 5. Reply
 
@@ -69,7 +69,7 @@ After the push, so replies can cite the commit SHA:
 
 ## 6. Independent review loop
 
-Skip this step if an independent review already passed on the current head (jira-to-pr runs one before handing over).
+Skip this step only if an independent review found nothing new on the current head, with no commits pushed since.
 
 Each round:
 
@@ -80,7 +80,7 @@ Each round:
 3. When both are in, run steps 3 to 5 on their findings.
 4. Re-dispatch the reviewer after the push. Do not ask first.
 
-Done when a pass reports no new blockers or should-fixes. There is no pass cap. Measure where findings land: findings in the previous round's fixes mean the loop is converging.
+Done when a pass reports no new blockers or should-fixes. There is no pass cap. Measure where findings land: findings in the previous round's fixes mean the loop is converging. If two rounds in a row raise blockers in code no earlier round touched, the loop is not converging: stop and report those findings for me to decide.
 
 ## 7. Finish
 

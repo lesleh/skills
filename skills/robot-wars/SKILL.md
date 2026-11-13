@@ -11,6 +11,8 @@ Run a structured debate on the motion in `$ARGUMENTS`. Two debater agents argue 
 
 Write the motion as one claim a team could adopt, with a PRO side that argues for it and a CON side that argues against it. Name what each side actually proposes, for example PRO "render inside a shadow root", CON "render into the host page's DOM with scoped classes".
 
+Word the motion around the trade-off, such as "not worth its cost", rather than an absolute word such as "pointless". An absolute word lets the debate turn on the word's definition instead of the decision.
+
 The motion must have two viable sides. A factual question ("does X support Y?") or a decision already made leaves the debaters nothing real to argue, so say so and answer it directly instead.
 
 Rule out any third option that would let one side dodge the motion, and record that in the context.
@@ -44,23 +46,27 @@ Done when every premise either side's strongest case needs is in the context as 
 
 ## 4. Run the workflow
 
-Read `robot-wars.workflow.js` in this folder in full, then call Workflow with its contents verbatim as `script`. Workflow accepts a `scriptPath` only inside the working directory or an added directory, so a path into this skill folder fails. Pass these `args`:
+Read `robot-wars.workflow.js` in this folder in full, then call Workflow with its contents verbatim as `script`. Workflow accepts a `scriptPath` only inside the working directory or an added directory, so a path into this skill folder fails.
+
+Use `quick` mode when the user passes `quick`, and `full` mode otherwise. Pass these `args`:
 
 | Arg | Required | Default |
 |---|---|---|
 | `motion` | yes | |
 | `context` | yes | |
 | `pro`, `con` | no | "for the motion", "against the motion" |
-| `mode` | no | `full`: 2 runs with sides swapped, 2 rebuttal rounds, 20 agents. `quick`: 1 run, 1 rebuttal round, 8 agents. A draw skips that run's stress test, so it uses one agent fewer. A speech over its word limit adds one agent to cut it. Use `quick` when the user passes `quick` |
+| `mode` | no | `full`: 2 runs with sides swapped, 2 rebuttal rounds, 20 agents. `quick`: 1 run, 1 rebuttal round, 8 agents. A draw skips that run's stress test, so it uses one agent fewer. A speech over its word limit adds one agent to cut it |
 | `rebuttals` | no | 2 in full mode, 1 in quick mode |
 | `limits` | no | `{opening: 400, rebuttal: 300, closing: 150}` words |
 | `criteria` | no | evidence, relevance, rebuttal, practicality, fragility, as `[{key, question}]` |
 
 Swap `criteria` when the decision is not an engineering one. Practicality fits a build decision, not a policy question.
 
+Done when the workflow's completion notice arrives with `overall` and `markdown` in its result.
+
 ## 5. Report
 
-Write the returned `markdown` to `.ai-plans/debate-<motion-slug>.md` in the current repo, or the scratchpad outside a repo. Then report:
+Write the returned `markdown` to `debate-<motion-slug>.md` in the folder the user's instructions name for plans, else `.ai-plans/` in the current repo, or the scratchpad outside a repo. Then report:
 
 - the overall result: PRO, CON, draw, or incomplete. In full mode the same side must win both runs. A changed winner is a draw, because order or labels decided it
 - each run's winner and the judge's reason, one line each
@@ -72,3 +78,5 @@ Write the returned `markdown` to `.ai-plans/debate-<motion-slug>.md` in the curr
 - in quick mode, that the result is indicative, since one run cannot rule out order bias
 
 Give the result as the judge's view of the arguments, not as settled fact. A debate shows which case held up under attack, and a well-argued side can still be wrong.
+
+Done when the file is written and the report covers every item above that applies.
