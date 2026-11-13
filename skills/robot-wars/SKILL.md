@@ -11,6 +11,8 @@ Run a structured debate on the motion in `$ARGUMENTS`. Two debater agents argue 
 
 Write the motion as one claim a team could adopt, with a PRO side that argues for it and a CON side that argues against it. Name what each side actually proposes, for example PRO "render inside a shadow root", CON "render into the host page's DOM with scoped classes".
 
+Word the motion around the trade-off, such as "not worth its cost", rather than an absolute word such as "pointless". An absolute word lets the debate turn on the word's definition instead of the decision.
+
 The motion must have two viable sides. A factual question ("does X support Y?") or a decision already made leaves the debaters nothing real to argue, so say so and answer it directly instead.
 
 Rule out any third option that would let one side dodge the motion, and record that in the context.
