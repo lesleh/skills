@@ -2,6 +2,8 @@
 name: review-followup
 description: Check whether a PR author fixed each thing I raised in my review. Use when I ask whether my review comments were addressed.
 argument-hint: "[PR number or URL]"
+metadata:
+  version: "2026-11-13"
 ---
 
 # Review Follow-up

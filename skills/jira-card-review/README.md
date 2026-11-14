@@ -2,7 +2,7 @@
 
 jira-card-review checks Jira cards against the code and says whether someone could pick each one up today. A card is ready when it passes three tests: its blockers are defined, its outcomes are defined, and it makes sense against the code as it stands. The skill judges what a card asks for and why, never how to build it.
 
-The agent's steps are in [SKILL.md](SKILL.md).
+The agent's steps are in [SKILL.md](SKILL.md). Changes to the skill are listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## Run it
 

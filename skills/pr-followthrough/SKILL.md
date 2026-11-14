@@ -2,6 +2,8 @@
 name: pr-followthrough
 description: Take an open PR of mine to green, with every comment answered. Use right after opening a PR, when review feedback arrives, or when CI fails on a PR.
 argument-hint: "[PR number or URL]"
+metadata:
+  version: "2026-11-13"
 ---
 
 Follow through on PR `$ARGUMENTS` (or the current branch's PR) until it is green, every comment has a reply, and an independent review finds nothing new. This skill sets the order. The repo's `AGENTS.md` / `CLAUDE.md` set the check commands, and my own rules set commit messages and replies. Running it is my permission to push to this PR without asking each time.

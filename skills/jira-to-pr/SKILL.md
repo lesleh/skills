@@ -3,6 +3,8 @@ name: jira-to-pr
 description: Take one Jira card from a clarity check to a reviewed pull request, moving the card through In Progress and Review.
 argument-hint: <TICKET-KEY>
 disable-model-invocation: true
+metadata:
+  version: "2026-11-13"
 ---
 
 Take the Jira card `$ARGUMENTS` to a reviewed pull request. The card's status always tells the truth: it moves to In Progress once you own the work, and to Review once the PR is ready for people.

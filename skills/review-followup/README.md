@@ -4,7 +4,7 @@ review-followup tells you whether the author of a pull request fixed each thing 
 
 It judges the code, not the replies. A "fixed it" reply or a resolved thread counts as a hint about where to look, never as proof.
 
-The agent's steps are in [SKILL.md](SKILL.md).
+The agent's steps are in [SKILL.md](SKILL.md). Changes to the skill are listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## Run it
 
