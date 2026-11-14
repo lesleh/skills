@@ -3,6 +3,8 @@ name: robot-wars
 description: Settle a two-option decision by debate - two agents argue assigned sides, a judge scores each run, sides swap to cancel order bias.
 argument-hint: "<motion> [quick]"
 disable-model-invocation: true
+metadata:
+  version: "2026-11-14"
 ---
 
 Run a structured debate on the motion in `$ARGUMENTS`. Two debater agents argue assigned sides in strict turns, and a judge agent scores each run. The workflow script `robot-wars.workflow.js` in this folder owns the turn order, the role prompts and the scoring, so your job is the framing before it and the report after it.

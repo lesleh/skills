@@ -4,7 +4,7 @@ robot-wars settles a choice between two options by running a structured debate b
 
 You get a report that names the side whose case held up under attack. It also lists the claims the judges found unsourced or wrong, and a premise that would overturn the result if it turned out wrong. The report gives the judges' view of the arguments, and a well-argued side can still be wrong.
 
-The agent's steps are in [SKILL.md](SKILL.md). The debate itself runs from [robot-wars.workflow.js](robot-wars.workflow.js).
+The agent's steps are in [SKILL.md](SKILL.md). The debate itself runs from [robot-wars.workflow.js](robot-wars.workflow.js). Changes to the skill are listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## Run it
 
