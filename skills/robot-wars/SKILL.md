@@ -56,9 +56,12 @@ Use `quick` mode when the user passes `quick`, and `full` mode otherwise. Pass t
 | `context` | yes | |
 | `pro`, `con` | no | "for the motion", "against the motion" |
 | `mode` | no | `full`: 2 runs with sides swapped, 2 rebuttal rounds, 20 agents. `quick`: 1 run, 1 rebuttal round, 8 agents. A draw skips that run's stress test, so it uses one agent fewer. A speech over its word limit adds one agent to cut it |
+| `model` | no | The session's model. A model name such as `opus` replaces it for every agent |
 | `rebuttals` | no | 2 in full mode, 1 in quick mode |
 | `limits` | no | `{opening: 400, rebuttal: 300, closing: 150}` words |
 | `criteria` | no | evidence, relevance, rebuttal, practicality, fragility, as `[{key, question}]` |
+
+If your session's model is Fable, pass `model: 'opus'`. Every agent inherits the session's model, and Fable costs twice as much as Opus for each token. On any other model, leave `model` out. A model the user names always wins over this rule.
 
 Swap `criteria` when the decision is not an engineering one. Practicality fits a build decision, not a policy question.
 
@@ -75,6 +78,7 @@ Write the returned `markdown` to `debate-<motion-slug>.md` in the folder the use
 - every claim a judge flagged as unsourced or wrong. These are often the most useful output: confident errors both debaters made
 - every disputed fact a judge checked, and what it found
 - the premise a stress test broke, if any, and whether the winning side's conclusion survives its alteration. The workflow returns `fragile: true` when a side won every run and a stress test broke it. Report any line where the judge and the stress test disagree
+- the model the agents ran on, from the file's "Model" line
 - in quick mode, that the result is indicative, since one run cannot rule out order bias
 
 Give the result as the judge's view of the arguments, not as settled fact. A debate shows which case held up under attack, and a well-argued side can still be wrong.

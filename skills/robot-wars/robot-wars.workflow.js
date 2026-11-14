@@ -14,6 +14,8 @@ if (!input.motion || !input.context) throw new Error('args.motion and args.conte
 const quick = input.mode === 'quick'
 const RUNS = quick ? [{A: 'PRO', B: 'CON'}] : [{A: 'PRO', B: 'CON'}, {A: 'CON', B: 'PRO'}]
 const REBUTTALS = input.rebuttals ?? (quick ? 1 : 2)
+// Every agent runs on the session's model unless the caller names one.
+const MODEL_OPTS = input.model ? {model: input.model} : {}
 const LIMITS = {opening: 400, rebuttal: 300, closing: 150, ...(input.limits || {})}
 const SIDES = {
   PRO: input.pro || 'for the motion',
@@ -160,11 +162,11 @@ async function runDebate(sides, runIndex) {
 
   async function speak(label, kind, round, seen) {
     const tag = `run ${run} ${kind}${round ? ` ${round}` : ''} ${label}`
-    let text = await agent(debaterPrompt(label, sides[label], kind, seen), {phase: 'Debate', label: tag})
+    let text = await agent(debaterPrompt(label, sides[label], kind, seen), {phase: 'Debate', label: tag, ...MODEL_OPTS})
     if (text && words(text) > LIMITS[kind] * 1.1) {
       const cut = await agent(
         `Cut this debate speech to at most ${LIMITS[kind]} words. Keep its strongest points and every source. Return only the speech.\n\n${text}`,
-        {phase: 'Debate', label: `${tag} (cut)`},
+        {phase: 'Debate', label: `${tag} (cut)`, ...MODEL_OPTS},
       )
       if (cut) text = cut
     }
@@ -183,7 +185,7 @@ async function runDebate(sides, runIndex) {
   }
   for (const label of ['A', 'B']) speeches.push(await speak(label, 'closing', 0, transcript()))
 
-  const verdict = await agent(judgePrompt(transcript()), {phase: 'Judge', label: `run ${run} judge`, schema: VERDICT})
+  const verdict = await agent(judgePrompt(transcript()), {phase: 'Judge', label: `run ${run} judge`, schema: VERDICT, ...MODEL_OPTS})
   const winningSide = !verdict ? 'none' : verdict.winner === 'draw' ? 'draw' : sides[verdict.winner]
   log(`Run ${run}: ${winningSide === 'draw' || winningSide === 'none' ? winningSide : `${winningSide} wins`}`)
 
@@ -199,6 +201,7 @@ async function runDebate(sides, runIndex) {
       phase: 'Stress test',
       label: `run ${run} stress test`,
       schema: STRESS,
+      ...MODEL_OPTS,
     })
     if (stress) log(`Run ${run} stress test: conclusion ${stress.conclusion_holds ? 'holds' : 'breaks'}`)
   }
@@ -277,6 +280,7 @@ const fragile =
 const markdown = [
   `# Debate: ${input.motion}`,
   `Overall result: ${overall}${fragile ? ' (won, but fragile)' : ''}${quick && overall !== 'incomplete' ? ' (quick mode: one run, so speaking order is not controlled)' : ''}`,
+  `Model: ${input.model || 'session model'}`,
   `## Verdict\n\n${runs.map(summaryMarkdown).join('\n\n')}`,
   `## Surviving arguments\n\n${survivingMarkdown()}`,
   `## Context\n\n${input.context}`,
@@ -295,6 +299,7 @@ const markdown = [
 return {
   overall,
   fragile,
+  model: input.model || 'session model',
   runs: runs.map((r) => ({run: r.run, sides: r.sides, winningSide: r.winningSide, verdict: r.verdict, stress: r.stress})),
   markdown,
 }

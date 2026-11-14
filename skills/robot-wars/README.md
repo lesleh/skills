@@ -31,6 +31,8 @@ A full run has a winner only when the same side wins both runs. If the winner ch
 
 Two full runs on 12 November 2026 used 27 and 21 agents, and took 8 and 18 minutes. The agents in each run used about 890,000 and 930,000 tokens in total.
 
+Every agent runs on your session's model, with one exception. If your session runs Fable, the agents run on Opus, which costs half as much for each token. To choose a model yourself, name it when you run the skill.
+
 The skill writes one file, `debate-<motion>.md`. It goes in the plans folder named in your `CLAUDE.md` or other instructions, or `.ai-plans/` in the current repo, or a scratch folder outside a repo. To build the context, the skill reads files in your repo but runs no commands there. The debaters and judges can search the web while they argue and check facts.
 
 ## Requirements
