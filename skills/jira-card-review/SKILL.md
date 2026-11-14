@@ -3,6 +3,8 @@ name: jira-card-review
 description: Review Jira cards against the code and say whether each one is ready to pick up. Read-only until I approve an edit.
 argument-hint: <KEY ...> | <EPIC-KEY> | <JQL>
 disable-model-invocation: true
+metadata:
+  version: "2026-11-13"
 ---
 
 Review the Jira cards in `$ARGUMENTS` and give each one a verdict: can someone pick it up today and know what done looks like?

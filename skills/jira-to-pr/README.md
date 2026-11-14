@@ -4,7 +4,7 @@ jira-to-pr takes one Jira card from a readiness check to a reviewed pull request
 
 The skill assigns the card, changes its status, pushes and opens a pull request without asking. Run it in a checkout of the repo the card belongs to.
 
-The agent's steps are in [SKILL.md](SKILL.md).
+The agent's steps are in [SKILL.md](SKILL.md). Changes to the skill are listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## Run it
 

@@ -4,7 +4,7 @@ pr-followthrough keeps working on your pull request until CI passes, every comme
 
 The skill pushes to your pull request without asking each time. It refuses to run on a pull request you did not open.
 
-The agent's steps are in [SKILL.md](SKILL.md). The script [wait-for-feedback.sh](wait-for-feedback.sh) watches the pull request between rounds.
+The agent's steps are in [SKILL.md](SKILL.md). The script [wait-for-feedback.sh](wait-for-feedback.sh) watches the pull request between rounds. Changes to the skill are listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## Run it
 
