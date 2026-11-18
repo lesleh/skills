@@ -18,6 +18,8 @@ The loop has **rounds**. A round collects every piece of feedback, fixes it all,
   `gh api -X POST repos/{owner}/{repo}/pulls/<n>/requested_reviewers -f 'reviewers[]=copilot-pull-request-reviewer[bot]'`
   Confirm via the timeline (`review_requested` events), never `requested_reviewers`, which stays empty for bots.
 
+Done when you know the PR number and base branch, whether the repo has a `review-gate` command or skill and which checks it owns, and whether to expect a Copilot review.
+
 ## 2. Wait
 
 Arm a Monitor on the bundled script (`timeout_ms: 1800000`, re-arm on expiry):
@@ -60,6 +62,8 @@ Done when every item has one of the four.
    - **Approvals.** `gh api repos/{owner}/{repo}/pulls/<n>/reviews --jq '.[] | select(.state == "APPROVED") | .user.login'`. Any push dismisses an approval, so an approved PR is frozen. Queue the change for a follow-up PR.
    - **Lease.** `git ls-remote origin <branch>` must match the SHA I last pushed. Worktrees share tracking refs, so `--force-with-lease` alone does not protect this. If they differ, `git range-diff` what would be replaced.
 4. Wait for any review run in flight to finish, then `git push --force-with-lease`.
+
+Done when the push succeeds, or a check that cannot pass or a failed guard has stopped the round.
 
 ## 5. Reply
 
