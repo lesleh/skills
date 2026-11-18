@@ -3,7 +3,7 @@ name: pr-followthrough
 description: Take an open PR of mine to green, with every comment answered. Use right after opening a PR, when review feedback arrives, or when CI fails on a PR.
 argument-hint: "[PR number or URL]"
 metadata:
-  version: "2026-11-13"
+  version: "2026-11-18"
 ---
 
 Follow through on PR `$ARGUMENTS` (or the current branch's PR) until it is green, every comment has a reply, and an independent review finds nothing new. This skill sets the order. The repo's `AGENTS.md` / `CLAUDE.md` set the check commands, and my own rules set commit messages and replies. Running it is my permission to push to this PR without asking each time.
@@ -17,6 +17,8 @@ The loop has **rounds**. A round collects every piece of feedback, fixes it all,
 - **Copilot.** Whether Copilot reviews automatically depends on the repo's settings, so check this PR rather than assume. If Copilot has reviewed any of this repo's recent PRs, and this PR's timeline shows no Copilot review or `review_requested` for it, request it now:
   `gh api -X POST repos/{owner}/{repo}/pulls/<n>/requested_reviewers -f 'reviewers[]=copilot-pull-request-reviewer[bot]'`
   Confirm via the timeline (`review_requested` events), never `requested_reviewers`, which stays empty for bots.
+
+Done when you know the PR number and base branch, whether the repo has a `review-gate` command or skill and which checks it owns, and whether to expect a Copilot review.
 
 ## 2. Wait
 
@@ -41,7 +43,7 @@ Collect everything since the last round:
   A re-run is only ever a way to unblock. It never counts as the fix.
 
 - **Codacy.** `gh api repos/{owner}/{repo}/commits/<sha>/check-runs --jq '.check_runs[] | select(.name | test("Codacy")) | .output'`. If that lacks detail, query the Codacy API with the `CODACY_API_TOKEN` environment variable.
-- **Review threads.** Every unresolved thread (GraphQL `reviewThreads`, with thread ids for resolving later), every review body, and every human comment in the conversation.
+- **Review threads.** Every unresolved thread with no reply held from an earlier round (GraphQL `reviewThreads`, with thread ids for resolving later), every review body, and every human comment in the conversation.
 
 Give each item a decision:
 
@@ -61,13 +63,17 @@ Done when every item has one of the four.
    - **Lease.** `git ls-remote origin <branch>` must match the SHA I last pushed. Worktrees share tracking refs, so `--force-with-lease` alone does not protect this. If they differ, `git range-diff` what would be replaced.
 4. Wait for any review run in flight to finish, then `git push --force-with-lease`.
 
+Done when the push succeeds, or a check that cannot pass or a failed guard has stopped the round.
+
 ## 5. Reply
 
-After the push, so replies can cite the commit SHA:
+Every reply is held, to bots and humans alike. After the push, draft them all so they can cite the commit SHA, and show them to me in full. Post each one when I approve it, with my edits, even if the loop has moved on. Keep the loop going while they wait: fixes and pushes do not depend on the replies.
 
-- Every thread and comment gets a reply, written with the `my-voice` skill if it is installed. Inline threads: `gh api -X POST repos/{owner}/{repo}/pulls/<n>/comments/<id>/replies -f body=...`.
-- Resolve each thread with the honest reason: `ADDRESSED` for a fix, `WONT_FIX` for a decline, `INVALID` for a wrong finding (GraphQL `resolveReviewThread` with `resolutionReason`).
-- **Every reply is held**, to bots and humans alike. Draft them all, show them to me in full, and post only the ones I approve, with my edits. Keep the loop going while they wait: fixes and pushes do not depend on the replies.
+- Every thread and comment gets a reply, written with the `my-voice` skill if it is installed.
+- Post an approved inline reply with `gh api -X POST repos/{owner}/{repo}/pulls/<n>/comments/<id>/replies -f body=...`.
+- Once a thread's reply is posted, resolve the thread with the reason that matches: `ADDRESSED` for a fix, `WONT_FIX` for a decline, `INVALID` for a wrong finding (GraphQL `resolveReviewThread` with `resolutionReason`).
+
+Done when every thread and comment has a drafted reply shown to me.
 
 ## 6. Independent review loop
 
@@ -86,7 +92,7 @@ Done when a pass reports no new blockers or should-fixes. There is no pass cap. 
 
 ## 7. Finish
 
-Done when, on the final head, `gh pr checks` is all green, every thread has a reply, and the reviewer is clean. Then report:
+Done when, on the final head, `gh pr checks` is all green, the reviewer is clean, and every thread has a reply that is either posted, with its thread resolved, or held for my approval. Then report:
 
 - the PR URL and its check state
 - per round: what was fixed, what was declined (with its evidence), how many nits were skipped

@@ -14,8 +14,8 @@ The agent's steps are in [SKILL.md](SKILL.md). Changes to the skill are listed i
 
 The skill works through these stages:
 
-- it checks the card is ready: assigned to you or nobody, not started, not blocked, and in this repo
-- it checks the card fits one pull request, has acceptance criteria it can test, and agrees with the code
+- it checks the card is free to start: assigned to you or nobody, not started, in this repo, and small enough for one pull request
+- it checks the card is ready, with the three tests from [jira-card-review](../jira-card-review/README.md), running that skill if you have it
 - it assigns the card to you and moves it to In Progress
 - it does the work on a branch named after the card, and proves each acceptance criterion with a test or a check
 - it runs the repo's checks, such as lint, type checks and tests, and anything the repo's `AGENTS.md` adds
@@ -36,7 +36,7 @@ Without asking, the skill:
 - creates a branch, commits, and pushes
 - opens a draft pull request, without showing you the description first, and later marks it ready
 
-It posts a comment on the card only if you agree.
+It posts a comment on the card, or rewrites the card's description through jira-card-review, only if you agree.
 
 The skill stops and asks you questions when the card is not ready, and changes nothing in Jira or git until you answer. It also stops when Jira has no move to an in-progress status, or the move needs fields it cannot fill. If a check cannot pass, it leaves the card In Progress and opens no pull request.
 
@@ -48,4 +48,4 @@ You need:
 - the Atlassian MCP server, or the `twg-jira` skill if the server is missing
 - the GitHub CLI, `gh`, signed in
 
-The pr-followthrough skill is optional.
+The jira-card-review and pr-followthrough skills are optional.

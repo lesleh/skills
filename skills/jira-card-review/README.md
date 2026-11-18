@@ -6,7 +6,7 @@ The agent's steps are in [SKILL.md](SKILL.md). Changes to the skill are listed i
 
 ## Run it
 
-Pass card keys, an epic key, or a JQL query:
+Ask in conversation, for example "is ABC-123 ready to pick up?", or run the command with card keys, an epic key, or a JQL query:
 
 ```text
 /jira-card-review ABC-123 ABC-124

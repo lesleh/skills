@@ -1,10 +1,10 @@
 ---
 name: jira-to-pr
-description: Take one Jira card from a clarity check to a reviewed pull request, moving the card through In Progress and Review.
+description: Take one Jira card from a readiness check to a reviewed pull request, moving the card through In Progress and Review.
 argument-hint: <TICKET-KEY>
 disable-model-invocation: true
 metadata:
-  version: "2026-11-13"
+  version: "2026-11-18"
 ---
 
 Take the Jira card `$ARGUMENTS` to a reviewed pull request. The card's status always tells the truth: it moves to In Progress once you own the work, and to Review once the PR is ready for people.
@@ -19,19 +19,30 @@ Fetch the card and read all of it: description, acceptance criteria, every comme
 
 Done when you can state in two sentences what changes and how you will prove it.
 
-## 2. Check the card is ready
+## 2. Check the card is free to start and ready
 
-The card is ready when every item holds:
+The card is free to start when:
 
 - it is unassigned or assigned to the user, and its status comes before In Progress
 - no branch or PR carries the key yet (`git ls-remote --heads origin "*<KEY>*"`, `gh pr list --search <KEY> --state all`)
-- no "is blocked by" link points at an unresolved issue
 - the work belongs in this repo
-- each acceptance criterion is testable: it maps to a test you can write or a behaviour you can show
 - the scope fits one PR
-- the card agrees with itself and with the code as it stands
 
-If any item fails, stop. Ask numbered questions, one per failure, each with what you found, the options and your recommended answer. Offer to post the questions as a comment on the card, and post only on a yes. Jira and git stay untouched until the user answers.
+Run the readiness check only on a card that is free to start. The card is ready when it passes three tests: blockers, outcomes and sense. If the `jira-card-review` skill is installed, run it on the card and act on its verdict:
+
+- ready: the card passes
+- fix first: the card passes once the user approves the rewrite in its step 6 and the card is updated. That step 6 ask takes the place of the questions below
+- blocked: the card fails, and its question joins the questions below
+
+If it is not installed, check the three tests yourself:
+
+- blockers: every dependency is a Jira issue link ("is blocked by") to a card that is Done, and every piece of work the card needs has a card
+- outcomes: each acceptance criterion is a result someone can observe, and is still open
+- sense: every statement about the code is true today, and the card agrees with itself
+
+If any check fails, stop. Ask numbered questions, one per failure, each with what you found, the options and your recommended answer. Offer to post the questions as a comment on the card, and post only on a yes. Jira and git stay untouched until the user answers.
+
+Done when the card is free to start and ready.
 
 ## 3. Claim the card
 
@@ -57,6 +68,8 @@ If a check cannot pass, stop. Leave the card in In Progress, open no PR, and rep
 Push the branch and open the PR with `gh pr create --draft`, with the card key in the title. Running this skill is the user's permission to push and open the PR, so open it without showing the body first.
 
 In the desktop app, call `mcp__ccd_pr__get_status`, and bind the PR with `bind_pr` if it is not reported.
+
+Done when the draft PR is open with the card key in its title.
 
 ## 6. Get an adversarial review
 
