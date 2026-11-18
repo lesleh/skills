@@ -17,7 +17,7 @@ Word the motion around the trade-off, such as "not worth its cost", rather than 
 
 The motion must have two viable sides. A factual question ("does X support Y?") or a decision already made leaves the debaters nothing real to argue, so say so and answer it directly instead.
 
-Rule out any third option that would let one side dodge the motion, and record that in the context.
+Rule out any third option that would let one side dodge the motion.
 
 Done when the motion is one sentence and each side has a one-line proposal.
 
@@ -59,8 +59,8 @@ Use `quick` mode when the user passes `quick`, and `full` mode otherwise. Pass t
 | `pro`, `con` | no | "for the motion", "against the motion" |
 | `mode` | no | `full`: 2 runs with sides swapped, 2 rebuttal rounds, 20 agents. `quick`: 1 run, 1 rebuttal round, 8 agents. A draw skips that run's stress test, so it uses one agent fewer. A speech over its word limit adds one agent to cut it |
 | `model` | no | The session's model. A model name such as `opus` replaces it for every agent |
-| `rebuttals` | no | 2 in full mode, 1 in quick mode |
-| `limits` | no | `{opening: 400, rebuttal: 300, closing: 150}` words |
+| `rebuttals` | no | Set by `mode` |
+| `limits` | no | The script's word limits, as `{opening, rebuttal, closing}` |
 | `criteria` | no | evidence, relevance, rebuttal, practicality, fragility, as `[{key, question}]` |
 
 If your session's model is Fable, pass `model: 'opus'`. Every agent inherits the session's model, and Fable costs twice as much as Opus for each token. On any other model, leave `model` out. A model the user names always wins over this rule.
@@ -73,7 +73,7 @@ Done when the workflow's completion notice arrives with `overall` and `markdown`
 
 Write the returned `markdown` to `debate-<motion-slug>.md` in the folder the user's instructions name for plans, else `.ai-plans/` in the current repo, or the scratchpad outside a repo. Then report:
 
-- the overall result: PRO, CON, draw, or incomplete. In full mode the same side must win both runs. A changed winner is a draw, because order or labels decided it
+- the overall result from `overall`: PRO, CON, draw, or incomplete. When the winner changed between runs, say so, because order or labels decided it
 - each run's winner and the judge's reason, one line each
 - the arguments that decided it, across runs
 - the surviving arguments for each side, from the file's "Surviving arguments" section. Merge the runs so a point made in both counts once, and give each with the premise it depends on
