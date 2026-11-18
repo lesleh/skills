@@ -1,8 +1,7 @@
 ---
 name: jira-card-review
-description: Review Jira cards against the code and say whether each one is ready to pick up. Read-only until I approve an edit.
+description: Review Jira cards against the code and say whether each one is ready to pick up. Use when I ask if a card or an epic is ready, or for backlog refinement.
 argument-hint: <KEY ...> | <EPIC-KEY> | <JQL>
-disable-model-invocation: true
 metadata:
   version: "2026-11-18"
 ---
