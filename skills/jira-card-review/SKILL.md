@@ -4,7 +4,7 @@ description: Review Jira cards against the code and say whether each one is read
 argument-hint: <KEY ...> | <EPIC-KEY> | <JQL>
 disable-model-invocation: true
 metadata:
-  version: "2026-11-13"
+  version: "2026-11-18"
 ---
 
 Review the Jira cards in `$ARGUMENTS` and give each one a verdict: can someone pick it up today and know what done looks like?
@@ -21,9 +21,9 @@ Jira, git and the local checkouts stay read-only until step 6.
 
 Leave out cards that are Done. Read the whole set in one call.
 
-Done when you have the list of keys. Open the report with the number of cards.
-
 With more than 3 cards, give each card to its own subagent, all started in one message. Each subagent gets the card key and the path to this file, runs steps 2 to 4, and returns its step 5 entry. Then you write the step 5 report.
+
+Done when you have the list of keys, and with more than 3 cards, a subagent started for each.
 
 ## 2. Read the card
 
@@ -60,7 +60,7 @@ Then check every statement the card makes about how the code behaves today, wher
 
 For a dependency from another repo, the version this repo pins is the truth. Read that version, and name the version you read. When the card needs behaviour that the pinned version does not have, check whether that behaviour is merged upstream. Merged and unreleased is a note for the report, because a release needs no card. A fault is behaviour that is not merged and has no linked card.
 
-Done when every acceptance item has a mark and every met or part met mark has a `file:line`.
+Done when every acceptance item has a mark, every met or part met mark has a `file:line`, every statement the card makes about today's code is checked, and every dependency from another repo names the version you read.
 
 ## 5. Judge and report
 
@@ -90,7 +90,9 @@ Report each card as:
 4. for a fix first card, the rewritten description
 5. for a blocked card, the question, and who can answer it (the reporter, or the owner of the card it waits on). When part of the scope can start today, say which part, and suggest the split.
 
-With more than one card, open with a table of key, title, repo and verdict, with blocked cards first, then fix first, then ready.
+Open the report with the number of cards. With more than one card, follow it with a table of key, title, repo and verdict, with blocked cards first, then fix first, then ready.
+
+Done when every card's issue links are checked, every card has a verdict, every fault cites its evidence, every fix first card has its rewrite, and every blocked card has its question and who can answer it.
 
 ## 6. Edit the card on a yes
 
