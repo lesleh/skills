@@ -8,7 +8,7 @@ The agent's steps are in [SKILL.md](SKILL.md). Changes to the skill are listed i
 
 ## Run it
 
-Ask in conversation, for example "did they address my comments on #123?", or run the command:
+Ask in conversation, for example "did they address my comments on #123?" or "what changed on #123 since my review?", or run the command:
 
 ```text
 /review-followup 123
@@ -24,7 +24,8 @@ Each of your comments gets one status:
 - Open: the problem is still in the code, or a question has no answer
 - Partially: part of the ask is done
 - Can't tell: the evidence does not settle it, and the report names where to look
-- Resolved: someone answered or declined a question, or the author declined a nit with a reason
+- Declined: someone declined a question, or declined a nit with a reason
+- Answered: someone answered a question
 - Fixed: the current code does what the comment asked
 - No action: the comment was discussion or praise
 
