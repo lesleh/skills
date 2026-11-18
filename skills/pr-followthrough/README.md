@@ -20,7 +20,7 @@ With no argument, it works on the pull request for the current branch. Claude Co
 - it folds each fix into the commit it belongs to, so it rewrites the branch, then pushes with `git push --force-with-lease`
 - it requests a Copilot review when Copilot reviews other pull requests in the repo but has not reviewed this one
 - it re-runs a failed CI job when the failure is flaky and its cause is known
-- it resolves each review thread, with a reason
+- it resolves each review thread, with a reason, after you approve its reply and the reply is posted
 - it starts a background Claude Code session, in its own worktree, for a bug that does not belong in this pull request
 
 A background session that fixes a failure already on the base branch can push and open its own pull request without waiting for you. A red base branch blocks everyone, so that session does not wait.
@@ -29,7 +29,7 @@ The skill drafts a reply to every comment, but posts only the replies you approv
 
 ## When it stops
 
-The skill finishes when the checks pass, every thread has a reply and the reviewer finds no new blockers or should-fix problems. It stops early and reports when:
+The skill finishes when the checks pass, every thread has a reply that is posted or waiting for your approval, and the reviewer finds no new blockers or should-fix problems. It stops early and reports when:
 
 - a required check also fails on the base branch
 - a check cannot pass locally
