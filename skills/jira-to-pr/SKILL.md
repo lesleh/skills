@@ -69,6 +69,8 @@ Push the branch and open the PR with `gh pr create --draft`, with the card key i
 
 In the desktop app, call `mcp__ccd_pr__get_status`, and bind the PR with `bind_pr` if it is not reported.
 
+Done when the draft PR is open with the card key in its title.
+
 ## 6. Get an adversarial review
 
 Start the reviewers below as fresh subagents, all in one message so they run in parallel. Each one is adversarial: it assumes the change is wrong and hunts for the proof. Give each reviewer only:
