@@ -1,6 +1,21 @@
 # dragons-den
 
+```text
+              __    __
+              \ \__/ /____
+         _____/ /  \/     `--.__
+        /  ___/    (@)         `-._
+       |  /   ^^^^              o  >  ~ ~ ~
+       |  \__   ^^^^     __.------'  ~ ~
+        \    `---.______/   ~ ~
+         \__________\
+```
+
+> "And for that reason, I'm out."
+
 dragons-den has you pitch a rough idea to a dragon: very rich, very busy and unconvinced that your idea deserves anyone's time, yours included. The dragon grills the idea until its scope is fixed, then says whether it is worth doing. It is for catching an idea that is not worth the time before you have spent the time on it.
+
+The dragon is modelled on the investors in [Dragons' Den](https://www.bbc.co.uk/programmes/b006vq92), the BBC show where entrepreneurs pitch for money and mostly leave without it.
 
 The agent's steps are in [SKILL.md](SKILL.md). Changes to the skill are listed in [CHANGELOG.md](CHANGELOG.md).
 
@@ -14,6 +29,46 @@ Run the command with the idea, or a link to the card or ticket that holds it:
 ```
 
 The skill runs only when you type the command. The agent does not start it on its own.
+
+## What it sounds like
+
+A made-up pitch, shortened. The first round:
+
+```text
+> /dragons-den a dashboard that shows which skills I actually use
+
+I'm not seeing it yet. You want a dashboard. I had my people look: your
+session logs already record every skill you run, and one search counts them.
+
+In:     a dashboard of skill usage (new)
+Out:    (nothing yet)
+Later:  (nothing yet)
+
+Q1 - The ask: How much of your time is this? A web dashboard with charts is
+a week. A script that prints a table is an hour.
+What I'd want to hear: An hour. Nobody needs charts for a list of twelve names.
+
+Q2 - The cost of never: If you never build it, what goes wrong?
+What I'd want to hear: Nothing. You stay curious, which is free.
+
+Q3 - The smallest version: Would a one-off count of last month's logs tell you
+whether a dashboard is worth building?
+What I'd want to hear: Yes, and it will probably tell you it isn't.
+```
+
+You answer: a week, nothing goes wrong, and the dashboard is the smallest version. The verdict:
+
+```text
+That's a no from me.
+
+A week of your time to satisfy curiosity, when the answer is one search away.
+You told me nothing breaks without it, and you turned down the hour-long
+version. That isn't a product, it's a hobby with a deadline.
+
+And for that reason, I'm out.
+
+Scope doc: ~/.claude/scoping/2026-11-23-skill-usage-dashboard.md
+```
 
 ## How it works
 
