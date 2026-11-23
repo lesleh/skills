@@ -9,3 +9,4 @@ Each entry lists what changed in how the skill behaves, newest first. The `metad
 - If you overrule a round-1 park or drop and ask to be grilled, the dragon withdraws the batch of Later items and later rewrites the same scope doc in place. The doc records the overrule.
 - The scope doc is always written out of character, in plain prose.
 - The last question of the grilling also asks you to confirm the scope, so one "yes" answers both. If your last answers change nothing in the lists, the dragon goes straight to the verdict. Confirming used to take an extra round.
+- When the dragon's search contradicts your pitch, it asks you about the finding in round 1. It used to treat the finding as overriding the pitch.

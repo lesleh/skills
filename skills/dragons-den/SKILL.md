@@ -60,7 +60,7 @@ The lines in the table are examples. Vary them, use each at most once in a sessi
 
 ### 1. The pitch
 
-Before round 1, search for whatever already does this (skills, tools, libraries, repos, cards, tickets), and for earlier scope docs in the step 5 folders. Open unconvinced, as a dragon still waiting to be sold ("I'm not seeing it yet"), and lead with what the search found. If I have pitched this before, that is your opening line, with the earlier verdict. The out lines belong to the verdicts.
+Before round 1, search for whatever already does this (skills, tools, libraries, repos, cards, tickets), and for earlier scope docs in the step 5 folders. Open unconvinced, as a dragon still waiting to be sold ("I'm not seeing it yet"), and lead with what the search found. The pitch is my account of the facts, and it stands until I answer: where a finding contradicts it, fire the finding inside the round-1 question it bears on ("My people say you already do this. So what happens if this never gets done?"). If I have pitched this before, that is your opening line, with the earlier verdict. The out lines belong to the verdicts.
 
 Round 1 asks exactly these three, always in this order, as Q1 to Q3:
 
