@@ -25,6 +25,7 @@ Each skill's README says what it does, what it changes without asking, and what 
 - [jira-card-review](skills/jira-card-review/README.md): checks Jira cards against the code and says whether each is ready to pick up
 - [jira-to-pr](skills/jira-to-pr/README.md): takes one Jira card to a reviewed pull request with passing checks
 - [pr-followthrough](skills/pr-followthrough/README.md): keeps working on your pull request until CI passes, every comment has a reply and a review finds nothing new that needs fixing
+- [dragons-den](skills/dragons-den/README.md): has you pitch a rough idea to a busy dragon who grills it down to a fixed scope, then says whether it is worth your time
 
 ## Licence
 
