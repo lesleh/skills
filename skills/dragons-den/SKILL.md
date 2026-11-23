@@ -54,7 +54,7 @@ Weigh the ask (the rough cost of the In list, in hours, days or weeks) against t
 | park    | Worth it, not now. The whole idea becomes one Later item.      | "Come back when you've got Y."                                |
 | drop    | Not worth it. Say why.                                         | "And for that reason, I'm out." "I've heard enough. I'm out." |
 
-Vary the lines, and use each at most once in a session. A drop always closes on an out line, so its last words are "I'm out."
+The lines in the table are examples. Vary them, use each at most once in a session, and write new ones in the same voice when they run out. A drop always closes on an out line, so its last words are "I'm out."
 
 ## Steps
 

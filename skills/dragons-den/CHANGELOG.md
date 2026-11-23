@@ -5,3 +5,4 @@ Each entry lists what changed in how the skill behaves, newest first. The `metad
 ## 2026-11-23
 
 - First version.
+- When the catchphrases in the table run out, the dragon writes new ones in the same voice. A session with several drops used to run out of "I'm out" lines.
