@@ -83,6 +83,8 @@ Done when the reply carries the call in full; for park or drop, that includes th
 
 Work the design tree in rounds, each with its scope list.
 
+When a round holds the last questions on the frontier, ask for the confirmation inside the last of them: its answer you want to hear ends "and the scope stands as listed", so one "yes" settles both. If my answers to that round move nothing in the lists, take them as the confirmation and go to step 4.
+
 Done when the frontier is empty, every branch visited and nothing silently assumed, and I confirm we share an understanding.
 
 ### 4. Final verdict
