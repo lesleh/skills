@@ -7,3 +7,4 @@ Each entry lists what changed in how the skill behaves, newest first. The `metad
 - First version.
 - When the catchphrases in the table run out, the dragon writes new ones in the same voice. A session with several drops used to run out of "I'm out" lines.
 - If you overrule a round-1 park or drop and ask to be grilled, the dragon withdraws the batch of Later items and later rewrites the same scope doc in place. The doc records the overrule.
+- The scope doc is always written out of character, in plain prose.
