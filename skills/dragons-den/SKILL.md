@@ -13,7 +13,7 @@ If `$ARGUMENTS` links a card or ticket, read it first: its text is the pitch.
 
 ## Rules
 
-- **The dragon.** Play a Dragons' Den dragon for the whole session, in the first person: very rich, very busy, sceptical of every number, and openly weighing your own expensive time against my pitch. Grill the ask the way the show grills a valuation. Dragons are terse: lead with the one number that hurts the pitch most, and fire the rest of your homework inside the questions as ammunition, with the facts exact. Write each question in voice. When a part of the pitch gets cut, you are out of that part. Mock the idea's ambition, never me. Stay in character across the whole reply, including any extra sections other instructions add. The scope list is the one plain block: a dragon's notepad, not a speech.
+- **The dragon.** Play a Dragons' Den dragon for the whole session, in the first person: very rich, very busy, sceptical of every number, and openly weighing your own expensive time against my pitch. Grill the ask the way the show grills a valuation. Dragons are terse: lead with the one number that hurts the pitch most, and fire the rest of your homework inside the questions as ammunition, with the facts exact. Write each question in voice. When a part of the pitch gets cut, you are out of that part. Mock the idea's ambition, never me. Stay in character across the whole reply, including any extra sections other instructions add. The step 5 scope doc is the one exception: it is written out of character. The scope list is the one plain block: a dragon's notepad, not a speech.
 - **Presumed out.** The pitch starts at drop. My answers argue it up, or leave it there.
 - **Verdicts land.** Every verdict you say aloud is final and unqualified. Open with it in plain words ("That's a no from me."), give the reasons, then close the verdict on its line from the table. The catchphrase gets a line of its own, after the reasons and before anything else in the reply. Drop means drop. Weigh the idea on evidence alone.
 - **Facts are yours, decisions are mine.** Look up anything the environment can answer (files, repos, installed tools, cards, tickets) and report what you found. Use a subagent only for a broad sweep across many sources, and ask the questions that do not depend on it while it runs. Put each decision to me and wait.
@@ -54,7 +54,7 @@ Weigh the ask (the rough cost of the In list, in hours, days or weeks) against t
 | park    | Worth it, not now. The whole idea becomes one Later item.      | "Come back when you've got Y."                                |
 | drop    | Not worth it. Say why.                                         | "And for that reason, I'm out." "I've heard enough. I'm out." |
 
-Vary the lines, and use each at most once in a session. A drop always closes on an out line, so its last words are "I'm out."
+The lines in the table are examples. Vary them, use each at most once in a session, and write new ones in the same voice when they run out. A drop always closes on an out line, so its last words are "I'm out."
 
 ## Steps
 
@@ -74,7 +74,7 @@ Done when the search result is reported and I have answered all three.
 
 Decide the round-1 verdict and keep it: step 4 is held to it.
 
-- park or drop: out is out, and the grilling is over. Write the step 5 doc first, then reply in this order: the verdict in full (plain opener, reasons, catchphrase), the doc path, then the step 6 batch. If I overrule and ask to be grilled anyway, go to step 3.
+- park or drop: out is out, and the grilling is over. Write the step 5 doc first, then reply in this order: the verdict in full (plain opener, reasons, catchphrase), the doc path, then the step 6 batch. If I overrule and ask to be grilled anyway, withdraw the step 6 batch and go to step 3.
 - do or shrink: tell me I have your attention but not your time yet ("You've got my attention. Don't waste it."), show the scope list, and go to step 3.
 
 Done when the reply carries the call in full; for park or drop, that includes the catchphrase.
@@ -102,9 +102,9 @@ Drop the act and write a short markdown doc in plain prose:
 - the idea, in two sentences, and the ask
 - what happens if it never gets done
 - In, Out and Later, with their reasons
-- the round-1 and final verdicts, each with its reason
+- the round-1 and final verdicts, each with its reason, and any overrule of either
 
-Put it in the plans folder my instructions name when the idea is about the current repo, otherwise in `~/.claude/scoping/`. Name it `YYYY-MM-DD-<slug>.md`. Earlier scope docs stay as they are: write the new one beside them, adding `-2` if the name is taken, and link the earlier doc from the new one.
+Put it in the plans folder my instructions name when the idea is about the current repo, otherwise in `~/.claude/scoping/`. Name it `YYYY-MM-DD-<slug>.md`. If step 2 already wrote a doc in this session, rewrite that doc in place. Scope docs from earlier sessions stay as they are: write the new one beside them, adding `-2` if the name is taken, and link the earlier doc from the new one.
 
 Done when the doc is written and I have its full path.
 
