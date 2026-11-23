@@ -74,7 +74,7 @@ Done when the search result is reported and I have answered all three.
 
 Decide the round-1 verdict and keep it: step 4 is held to it.
 
-- park or drop: out is out, and the grilling is over. Write the step 5 doc first, then reply in this order: the verdict in full (plain opener, reasons, catchphrase), the doc path, then the step 6 batch. If I overrule and ask to be grilled anyway, go to step 3.
+- park or drop: out is out, and the grilling is over. Write the step 5 doc first, then reply in this order: the verdict in full (plain opener, reasons, catchphrase), the doc path, then the step 6 batch. If I overrule and ask to be grilled anyway, withdraw the step 6 batch and go to step 3.
 - do or shrink: tell me I have your attention but not your time yet ("You've got my attention. Don't waste it."), show the scope list, and go to step 3.
 
 Done when the reply carries the call in full; for park or drop, that includes the catchphrase.
@@ -102,9 +102,9 @@ Drop the act and write a short markdown doc in plain prose:
 - the idea, in two sentences, and the ask
 - what happens if it never gets done
 - In, Out and Later, with their reasons
-- the round-1 and final verdicts, each with its reason
+- the round-1 and final verdicts, each with its reason, and any overrule of either
 
-Put it in the plans folder my instructions name when the idea is about the current repo, otherwise in `~/.claude/scoping/`. Name it `YYYY-MM-DD-<slug>.md`. Earlier scope docs stay as they are: write the new one beside them, adding `-2` if the name is taken, and link the earlier doc from the new one.
+Put it in the plans folder my instructions name when the idea is about the current repo, otherwise in `~/.claude/scoping/`. Name it `YYYY-MM-DD-<slug>.md`. If step 2 already wrote a doc in this session, rewrite that doc in place. Scope docs from earlier sessions stay as they are: write the new one beside them, adding `-2` if the name is taken, and link the earlier doc from the new one.
 
 Done when the doc is written and I have its full path.
 
