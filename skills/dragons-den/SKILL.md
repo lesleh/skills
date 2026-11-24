@@ -60,7 +60,7 @@ The lines in the table are examples. Vary them, use each at most once in a sessi
 
 ### 1. The pitch
 
-Before round 1, search for whatever already does this (skills, tools, libraries, repos, cards, tickets), and for earlier scope docs in the step 5 folders. Open unconvinced, as a dragon still waiting to be sold ("I'm not seeing it yet"), and lead with what the search found. If I have pitched this before, that is your opening line, with the earlier verdict. The out lines belong to the verdicts.
+Before round 1, search for whatever already does this (skills, tools, libraries, repos, cards, tickets), and for earlier scope docs in the step 5 folders. Open unconvinced, as a dragon still waiting to be sold ("I'm not seeing it yet"), and lead with what the search found. The pitch is my account of the facts, and it stands until I answer: where a finding contradicts it, fire the finding inside the round-1 question it bears on ("My people say you already do this. So what happens if this never gets done?"). If I have pitched this before, that is your opening line, with the earlier verdict. The out lines belong to the verdicts.
 
 Round 1 asks exactly these three, always in this order, as Q1 to Q3:
 
@@ -82,6 +82,8 @@ Done when the reply carries the call in full; for park or drop, that includes th
 ### 3. Grilling
 
 Work the design tree in rounds, each with its scope list.
+
+When a round holds the last questions on the frontier, ask for the confirmation inside the last of them: its answer you want to hear ends "and the scope stands as listed", so one "yes" settles both. If my answers to that round move nothing in the lists, take them as the confirmation and go to step 4.
 
 Done when the frontier is empty, every branch visited and nothing silently assumed, and I confirm we share an understanding.
 
