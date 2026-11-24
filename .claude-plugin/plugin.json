@@ -1,0 +1,4 @@
+{
+  "name": "skills",
+  "description": "Agent skills. This manifest lets claude plugin eval load the repo as a plugin."
+}
